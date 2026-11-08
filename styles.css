@@ -12,12 +12,9 @@ a:focus-visible {outline:2px solid currentColor; outline-offset:3px}
 .bio img {width:88px; height:88px; border-radius:50%; object-fit:cover; background:#303a34}
 h1,h2,h3,p {margin:0}
 h1 {font-size:clamp(2rem,5vw,3.75rem); line-height:1.08}
-.bio p, .project p, .experience p {color:#d1d7cc; line-height:1.5; margin:.6em 0 1em}
-.project {display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:center; border:1px solid #475345; border-radius:12px; background:#242e27; padding:clamp(18px,3vw,32px); margin-bottom:32px}
-.project h2 {font-size:clamp(1.8rem,4vw,2.9rem)}
-.icon {width:62px; height:62px; margin-bottom:10px}
-.shots {display:flex; gap:8px; align-items:center}
-.shots img {min-width:0; width:calc(50% - 4px); height:auto; border-radius:6px}
+.bio p, .experience p {color:#d1d7cc; line-height:1.5; margin:.6em 0 1em}
 .experience {max-width:62ch; margin-bottom:52px}
 .experience h3 {margin:18px 0 4px}
-@media(max-width:620px){.project{grid-template-columns:1fr}.bio img{width:64px;height:64px}.bio{align-items:flex-start}.shots{max-width:340px}}
+footer {display:flex; align-items:baseline; gap:16px; padding:18px 0 28px; border-top:1px solid #38413b}
+footer span {color:#d1d7cc}
+@media(max-width:620px){.bio img{width:64px;height:64px}.bio{align-items:flex-start}}
