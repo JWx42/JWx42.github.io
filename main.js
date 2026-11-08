@@ -1,43 +1,11 @@
-function switchLanguage(lang) {
-    setCookie('lang', lang, 365);
-    fetch(`index_${lang}.html`)
-        .then(response => response.text())
-        .then(data => {
-            document.body.innerHTML = data;
-            var enFlag = document.querySelector('.flag[src="en.png"]');
-            var ruFlag = document.querySelector('.flag[src="ru.png"]');
-            if (lang === 'ru') {
-                enFlag.classList.remove('active');
-                ruFlag.classList.add('active');
-            } else {
-                enFlag.classList.add('active');
-                ruFlag.classList.remove('active');
-            }
-        });
-}
-
-window.onload = function() {
-    var lang = getCookie('lang') || 'en';
-    switchLanguage(lang);
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+// Remember a language explicitly chosen on the site. Both pages also work without JS.
+try {
+    const choice = localStorage.getItem("portfolio-language");
+    if (location.pathname.endsWith("/") && choice === "ru") {
+        location.replace("index_ru.html" + location.hash);
     }
-    return null;
-}
-
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
+    document.addEventListener("click", event => {
+        const link = event.target.closest("a[data-language]");
+        if (link) localStorage.setItem("portfolio-language", link.dataset.language);
+    });
+} catch { /* The language links still work when storage is unavailable. */ }
